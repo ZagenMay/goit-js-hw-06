@@ -17,17 +17,10 @@ const refs = {
   galleryRef: document.querySelector(".gallery"),
 };
 
-const galleryList = ({ url, alt }) => {
-  const galleryItem = document.createElement("li");
-  galleryItem.insertAdjacentHTML(
-    "afterbegin",
-    `<img class = "gallery__img" src="${url}" alt="${alt}">`
-  );
-  galleryItem.classList.add("gallery__item");
-
-  return galleryItem;
-};
-
-const galleryForce = images.map(galleryList);
-
-refs.galleryRef.append(...galleryForce);
+const galleryList = images
+  .map(
+    ({ url, alt }) =>
+      `<li class ="gallery__item"><img class = "gallery__img" src="${url}" alt="${alt}"></li>`
+  )
+  .join("");
+refs.galleryRef.insertAdjacentHTML("afterbegin", galleryList);
